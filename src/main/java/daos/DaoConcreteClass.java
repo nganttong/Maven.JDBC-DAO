@@ -1,9 +1,6 @@
 package daos;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,15 +54,55 @@ public class DaoConcreteClass implements BossDao {
         return null;
     }
 
-    public Boss update(Boss dto) {
+    public Boss update(Boss boss) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE bosses SET" +
+                    " name=?, location=?, hp=?, weakness=?, resistances=?, number_of_souls=? WHERE id=?");
+            preparedStatement.setString(1, boss.getName());
+            preparedStatement.setString(2, boss.getLocation());
+            preparedStatement.setInt(3, boss.getHp());
+            preparedStatement.setString(4, boss.getWeakness());
+            preparedStatement.setString(5, boss.getResistances());
+            preparedStatement.setInt(6, boss.getNumber_of_souls());
+            int i = preparedStatement.executeUpdate();
+
+            if(i == 1) {
+                return getBossByID(boss.getId());
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         return null;
     }
 
-    public Boss create(Boss dto) {
+    public Boss create(Boss boss) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO bosses VALUES (NULL, " +
+                    "?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, boss.getName());
+            preparedStatement.setString(2, boss.getLocation());
+            preparedStatement.setInt(3, boss.getHp());
+            preparedStatement.setString(4, boss.getWeakness());
+            preparedStatement.setString(5, boss.getResistances());
+            preparedStatement.setInt(6, boss.getNumber_of_souls());
+            int i = preparedStatement.executeUpdate();
+
+            if (i == 7) {
+                return getBossByID(boss.getId());
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         return null;
     }
 
     public void delete(int id) {
+        try {
+            Statement statement = connection.createStatement();
+            int i = statement.executeUpdate("DELETE FROM bosses WHERE id=" + id);
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
     }
 }
