@@ -1,6 +1,6 @@
 package daos;
 
-public class Boss {
+public class Boss implements BossDto {
     private int id;
     private String name;
     private String location;
@@ -10,6 +10,15 @@ public class Boss {
     private int number_of_souls;
 
     public Boss() {
+    }
+
+    public Boss(String name, String location, int hp, String weakness, String resistances, int number_of_souls) {
+        this.name = name;
+        this.location = location;
+        this.hp = hp;
+        this.weakness = weakness;
+        this.resistances = resistances;
+        this.number_of_souls = number_of_souls;
     }
 
     public Boss(int id, String name,
