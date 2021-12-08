@@ -9,6 +9,9 @@ public class Boss {
     private String resistances;
     private int number_of_souls;
 
+    public Boss() {
+    }
+
     public Boss(int id, String name,
                 String location, int hp,
                 String weakness, String resistances,
@@ -76,5 +79,18 @@ public class Boss {
 
     public void setNumber_of_souls(int number_of_souls) {
         this.number_of_souls = number_of_souls;
+    }
+
+    @Override
+    public String toString() {
+        return "Boss{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", hp=" + hp +
+                ", weakness='" + weakness + '\'' +
+                ", resistances='" + resistances + '\'' +
+                ", number_of_souls=" + number_of_souls +
+                '}';
     }
 }

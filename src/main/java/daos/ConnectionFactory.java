@@ -22,11 +22,4 @@ public class ConnectionFactory {
             throw new RuntimeException("Error connecting to the database", ex);
         }
     }
-
-    /**
-     * Test Connection
-     */
-    public static void main(String[] args) {
-        Connection connection = ConnectionFactory.getConnection();
-    }
 }
