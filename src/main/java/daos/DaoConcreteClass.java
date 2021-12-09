@@ -5,18 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DaoConcreteClass implements BossDao {
-    Boss boss;
+
     Connection connection = ConnectionFactory.getConnection();
 
     public Boss getBossByID(final int id) {
         try{
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM bosses WHERE id=" + id);
-
             if(resultSet.next()) {
                 return bossFromResultSet(resultSet);
             }
-
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -24,18 +22,17 @@ public class DaoConcreteClass implements BossDao {
     }
 
     private Boss bossFromResultSet(ResultSet resultSet) throws SQLException {
-        Boss boss = new Boss();
-
+        Boss resultBoss = new Boss();
             while (resultSet.next()) {
-                boss.setId(resultSet.getInt(1));
-                boss.setName(resultSet.getString(2));
-                boss.setLocation(resultSet.getString(3));
-                boss.setHp(resultSet.getInt(4));
-                boss.setWeakness(resultSet.getString(5));
-                boss.setResistances(resultSet.getString(6));
-                boss.setNumber_of_souls(resultSet.getInt(7));
+                resultBoss.setId(resultSet.getInt(1));
+                resultBoss.setName(resultSet.getString(2));
+                resultBoss.setLocation(resultSet.getString(3));
+                resultBoss.setHp(resultSet.getInt(4));
+                resultBoss.setWeakness(resultSet.getString(5));
+                resultBoss.setResistances(resultSet.getString(6));
+                resultBoss.setNumber_of_souls(resultSet.getInt(7));
             }
-        return boss;
+        return resultBoss;
     }
 
 
