@@ -60,6 +60,7 @@ public class DaoConcreteClass implements BossDao {
             preparedStatement.setString(4, boss.getWeakness());
             preparedStatement.setString(5, boss.getResistances());
             preparedStatement.setInt(6, boss.getNumber_of_souls());
+            preparedStatement.setInt(7,boss.getId());
             int i = preparedStatement.executeUpdate();
 
             if(i == 1) {

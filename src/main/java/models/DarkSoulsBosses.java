@@ -25,7 +25,7 @@ public class DarkSoulsBosses {
 //        bossOutput(createdBoss);
 //
         Boss exampleBossTwo = bosses.getBossByID(1);
-        exampleBossTwo.setResistances("Frost");
+        exampleBossTwo.setResistances("Dark");
         bossOutput(bosses.update(exampleBossTwo));
 //
 //        bosses.delete(createdBoss.getId());
